@@ -1,431 +1,440 @@
-<html><head><base href="https://farfouze.github.io/fonts/"><title>Font Comparison</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-size: 16px;
-      background: linear-gradient(to bottom right, #2C5364, #203A43, #0F2027);
-      color: #f0f0f0;
-      padding: 2rem;
-      transition: background 0.3s ease-in-out, color 0.3s;
-      font-family: sans-serif;
-    }
-    body.light-mode {
-      background: linear-gradient(to bottom right, #f5f5f5, rgb(178, 196, 201), rgb(140, 166, 173));
-      color: #333;
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      position: relative;
-    }
-    h1 {
-      font-size: 3em;
-      text-align: center;
-      margin-bottom: 1rem;
-      color: #fff;
-      transition: color 0.3s;
-    }
-    body.light-mode h1 {
-      color: #203A43;
-    }
-    h2 {
-      font-size: 1.5em;
-      text-align: center;
-      margin-bottom: 2rem;
-      color: #ccc;
-      font-weight: 400;
-      transition: color 0.3s;
-    }
-    body.light-mode h2 {
-      color: #2C5364;
-    }
-    p {
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
-      font-size: 1.1rem;
-    }
-    .font-nav {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-    select {
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.3);
-      font-size: 1rem;
-      padding: 0.5rem 2rem 0.5rem 1rem;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.3s;
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      background-size: 1em;
-    }
-    body.light-mode select {
-      background-color: rgba(0,0,0,0.05);
-      color: #333;
-      border-color: rgba(0,0,0,0.1);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-    }
-    select:hover {
-      background-color: rgba(255,255,255,0.2);
-    }
-    body.light-mode select:hover {
-      background-color: rgba(0,0,0,0.1);
-    }  
-    select:focus {
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(255,255,255,0.1);
-    }
-    body.light-mode select:focus {
-      box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
-    }
-    select option {
-      background: #203A43;
-      color: #fff;
-    }
-    body.light-mode select option {
-      background: #fff;
-      color: #333;
-    }
-    select::-ms-expand {
-      display: none;
-    }
-    .arrow {
-      background: none;
-      border: none;
-      font-size: 2rem;
-      color: #fff;
-      cursor: pointer;
-      transition: color 0.3s;
-      margin: 0 1rem;
-    }
-    body.light-mode .arrow {
-      color: #203A43;
-    }
-    .arrow:hover {
-      color: #ccc;
-    }
-    body.light-mode .arrow:hover {
-      color: #2C5364;  
-    }
-    .mode-switch {
-      position: fixed;
-      right: 2rem;
-      bottom: 2rem;
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.3);
-      padding: 0.75rem 1.5rem;
-      border-radius: 10rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      text-align: center;
-    }
-    body.light-mode .mode-switch {
-      background: rgba(0,0,0,0.05);
-      color: #203A43;
-      border-color: rgba(0,0,0,0.1);
-    }
-    body.light-mode .mode-switch::before {
-      content: 'Switch to Dark Mode';
-    }
-    .mode-switch::before {
-      content: 'Switch to Light Mode';
-    }
-    .mode-switch:hover {
-      background: rgba(255,255,255,0.2);
-      border-color: rgba(255,255,255,0.5);
-    }
-    body.light-mode .mode-switch:hover {
-      background: rgba(0,0,0,0.1);
-      border-color: rgba(0,0,0,0.2);
-    }
-    
-    .add-font-form {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 2rem;
-    }
-    
-    .add-font-form input,
-    .font-nav,
-    .add-font-form button {
-      font-family: sans-serif !important;
-    }
-    
-    .add-font-form input {
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.3);
-      padding: 0.5rem 1rem;
-      border-radius: 5px 0 0 5px;
-      transition: all 0.3s;
-      flex-grow: 1;
-      font-size: 1rem;
-    }
-    
-    body.light-mode .add-font-form input {
-      background: rgba(0,0,0,0.05);
-      color: #333;
-      border-color: rgba(0,0,0,0.1);
-    }
-    
-    .add-font-form input:focus {
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(255,255,255,0.1); 
-    }
-    
-    body.light-mode .add-font-form input:focus {
-      box-shadow: 0 0 0 3px rgba(0,0,0,0.05); 
-    }
-    
-    .add-font-form button {
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.3);
-      padding: 0.5rem 1rem;
-      border-radius: 0 5px 5px 0;
-      cursor: pointer;
-      transition: all 0.3s;
-      font-weight: bold;
-      font-size: 1rem;
-    }
-    
-    body.light-mode .add-font-form button {
-      background: rgba(0,0,0,0.05);
-      color: #333;
-      border-color: rgba(0,0,0,0.1);
-    }
-    
-    .add-font-form button:hover {
-      background: rgba(255,255,255,0.2);
-      border-color: rgba(255,255,255,0.5);
-    }
+<html>
+<head>
+<base href="https://farfouze.github.io/fonts/">
+<title>Font Comparison</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-size: 16px;
+  background: linear-gradient(to bottom right, #2C5364, #203A43, #0F2027);
+  color: #f0f0f0;
+  padding: 2rem;
+  transition: background 0.3s ease-in-out, color 0.3s;
+  font-family: sans-serif;
+}
+body.light-mode {
+  background: linear-gradient(to bottom right, #f5f5f5, rgb(178, 196, 201), rgb(140, 166, 173));
+  color: #333;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+h1 {
+  font-size: 3em;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #fff;
+  transition: color 0.3s;
+}
+body.light-mode h1 {
+  color: #203A43;
+}
+h2 {
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #ccc;
+  font-weight: 400;
+  transition: color 0.3s;
+}
+body.light-mode h2 {
+  color: #2C5364;
+}
+p {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+.font-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+select {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  font-size: 1rem;
+  padding: 0.5rem 2rem 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1em;
+}
+body.light-mode select {
+  background-color: rgba(0,0,0,0.05);
+  color: #333;
+  border-color: rgba(0,0,0,0.1);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+select:hover {
+  background-color: rgba(255,255,255,0.2);
+}
+body.light-mode select:hover {
+  background-color: rgba(0,0,0,0.1);
+}  
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.1);
+}
+body.light-mode select:focus {
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+}
+select option {
+  background: #203A43;
+  color: #fff;
+}
+body.light-mode select option {
+  background: #fff;
+  color: #333;
+}
+select::-ms-expand {
+  display: none;
+}
+.arrow {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.3s;
+  margin: 0 1rem;
+}
+body.light-mode .arrow {
+  color: #203A43;
+}
+.arrow:hover {
+  color: #ccc;
+}
+body.light-mode .arrow:hover {
+  color: #2C5364;  
+}
+.mode-switch {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 0.75rem 1.5rem;
+  border-radius: 10rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+}
+body.light-mode .mode-switch {
+  background: rgba(0,0,0,0.05);
+  color: #203A43;
+  border-color: rgba(0,0,0,0.1);
+}
+body.light-mode .mode-switch::before {
+  content: 'Switch to Dark Mode';
+}
+.mode-switch::before {
+  content: 'Switch to Light Mode';
+}
+.mode-switch:hover {
+  background: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.5);
+}
+body.light-mode .mode-switch:hover {
+  background: rgba(0,0,0,0.1);
+  border-color: rgba(0,0,0,0.2);
+}
 
-    body.light-mode .add-font-form button:hover {
-      background: rgba(0,0,0,0.1);
-      border-color: rgba(0,0,0,0.2);
-    }
-    
-    body.light-mode p {
-      color: #555;
-      transition: color 0.3s;
-    }
-    
-    body.light-mode .italic {
-      color: #888;  
-      transition: color 0.3s;
-    }
-    
-    body.light-mode .bold {
-      color: #222;
-      transition: color 0.3s;
-    }
-    
-    .italic { font-style: italic; }
-    .bold { font-weight: bold; }
-    
-    .error {
-      color: #ff4f4f;
-      text-align: center;
-      margin-top: 1rem;
-      opacity: 1;
-      transition: opacity 0.5s ease-in-out;
-    }
-    
-    .error.hide {
-      opacity: 0;
-    }
-    
-    .font-helvetica {
-      font-family: "Helvetica", Arial, sans-serif;
-    }
-    
-    .font-garamond {
-      font-family: "Garamond", "Palatino Linotype", "Book Antiqua", serif;
-    }
-    
-    .font-courier-new {
-      font-family: "Courier New", Courier, monospace;
-    }
-    
-    .font-georgia {
-      font-family: "Georgia", "Times New Roman", serif;
-    }
-    
-    .font-arial {
-      font-family: "Arial", Helvetica, sans-serif;
-    }
-    
-    .add-font-form input::placeholder {
-      color: rgba(255,255,255,0.3);
-    }
-    
-    body.light-mode .add-font-form input::placeholder {
-      color: rgba(0,0,0,0.2);  
-    }
-    </style>
-  </head>
-  <body class="font-helvetica">
-  <div class="container">
-    <form class="add-font-form">
-      <input type="text" id="newFont" placeholder="Enter a font name (e.g., Calibri)" oninput="this.value = titleCase(this.value)">
-      <button type="submit">Add Font</button>
-    </form>
-  
-    <div class="font-nav">
-      <button class="arrow" onclick="prevFont()">&larr;</button>
-      <select onchange="changeFont(this.value)">
-        <option value="font-helvetica">Helvetica</option>
-        <option value="font-garamond">Garamond</option>
-        <option value="font-courier-new">Courier New</option>
-        <option value="font-georgia">Georgia</option>
-        <option value="font-arial">Arial</option>
-      </select>
-      <button class="arrow" onclick="nextFont()">&rarr;</button>
-    </div>
-    
-    <h1>Compare Fonts</h1>
-    <h2>See how different typefaces affect readability and style</h2>
-     
-    <p>Lorem ipsum dolor sit amet, <span class="italic">consectetur adipiscing elit</span>. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit.</p>
-  
-    <p>Proin convallis mi ac felis pharetra aliquam. <span class="bold">Curabitur dignissim accumsan rutrum</span>. In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum.</p>
-    
-    <p>Phasellus et hendrerit mauris. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc. Praesent varius interdum vehicula. <span class="italic"><span class="bold">Aenean risus libero</span>, placerat at vestibulum eget, ultricies eu enim.</span></p>
-    
-    <p>Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc.</p>
-  
-    <div id="error" class="error"></div>
+.add-font-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.add-font-form input,
+.font-nav,
+.add-font-form button {
+  font-family: sans-serif !important;
+}
+
+.add-font-form input {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 5px 0 0 5px;
+  transition: all 0.3s;
+  flex-grow: 1;
+  font-size: 1rem;
+}
+
+body.light-mode .add-font-form input {
+  background: rgba(0,0,0,0.05);
+  color: #333;
+  border-color: rgba(0,0,0,0.1);
+}
+
+.add-font-form input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.1); 
+}
+
+body.light-mode .add-font-form input:focus {
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.05); 
+}
+
+.add-font-form button {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+body.light-mode .add-font-form button {
+  background: rgba(0,0,0,0.05);
+  color: #333;
+  border-color: rgba(0,0,0,0.1);
+}
+
+.add-font-form button:hover {
+  background: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.5);
+}
+
+body.light-mode .add-font-form button:hover {
+  background: rgba(0,0,0,0.1);
+  border-color: rgba(0,0,0,0.2);
+}
+
+body.light-mode p {
+  color: #555;
+  transition: color 0.3s;
+}
+
+body.light-mode .italic {
+  color: #888;  
+  transition: color 0.3s;
+}
+
+body.light-mode .bold {
+  color: #222;
+  transition: color 0.3s;
+}
+
+.italic { font-style: italic; }
+.bold { font-weight: bold; }
+
+.add-font-form input::placeholder {
+  color: rgba(255,255,255,0.3);
+}
+
+body.light-mode .add-font-form input::placeholder {
+  color: rgba(0,0,0,0.2);  
+}
+
+.notification {
+  position: fixed;
+  top: 20px;
+  right: -300px;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  text-align: left;
+  padding: 0.5rem 1rem;
+  border-radius: 5px 0 0 5px;
+  transition: right 0.5s ease-in-out;
+  z-index: 1000;
+  font-size: 1rem;
+  width: 300px;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+}
+
+body.light-mode .notification {
+  background: rgba(0,0,0,0.05);
+  color: #333;
+  border-color: rgba(0,0,0,0.1);
+}
+
+.notification.show {
+  right: 0;
+}
+
+.font-helvetica { font-family: "Helvetica", Arial, sans-serif; }
+.font-garamond { font-family: "Garamond", "Palatino Linotype", "Book Antiqua", serif; }
+.font-courier-new { font-family: "Courier New", Courier, monospace; }
+.font-georgia { font-family: "Georgia", "Times New Roman", serif; }
+.font-arial { font-family: "Arial", Helvetica, sans-serif; }
+</style>
+</head>
+<body class="font-helvetica">
+<div class="container">
+  <form class="add-font-form">
+    <input type="text" id="newFont" placeholder="Enter a font name (e.g., Calibri)" oninput="this.value = titleCase(this.value)">
+    <button type="submit">Add Font</button>
+  </form>
+
+  <div class="font-nav">
+    <button class="arrow" onclick="prevFont()">&larr;</button>
+    <select onchange="changeFont(this.value)">
+      <option value="font-helvetica">Helvetica</option>
+      <option value="font-garamond">Garamond</option>
+      <option value="font-courier-new">Courier New</option>
+      <option value="font-georgia">Georgia</option>
+      <option value="font-arial">Arial</option>
+    </select>
+    <button class="arrow" onclick="nextFont()">&rarr;</button>
   </div>
   
-  <button class="mode-switch" onclick="toggleMode()"></button>
+  <h1>Compare Fonts</h1>
+  <h2>See how different typefaces affect readability and style</h2>
+   
+  <p>Lorem ipsum dolor sit amet, <span class="italic">consectetur adipiscing elit</span>. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit.</p>
+
+  <p>Proin convallis mi ac felis pharetra aliquam. <span class="bold">Curabitur dignissim accumsan rutrum</span>. In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum.</p>
   
-  <script>
-    let fonts = [
-      'font-helvetica',
-      'font-garamond',
-      'font-courier-new',
-      'font-georgia',
-      'font-arial'
-    ];
+  <p>Phasellus et hendrerit mauris. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc. Praesent varius interdum vehicula. <span class="italic"><span class="bold">Aenean risus libero</span>, placerat at vestibulum eget, ultricies eu enim.</span></p>
   
-    let currentFont = 0;
-    let lightMode = false;
+  <p>Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc.</p>
+</div>
+
+<div id="notification" class="notification"></div>
+
+<button class="mode-switch" onclick="toggleMode()"></button>
+
+<script>
+let fonts = [
+  'font-helvetica',
+  'font-garamond',
+  'font-courier-new',
+  'font-georgia',
+  'font-arial'
+];
+
+let currentFont = 0;
+let lightMode = false;
+
+function nextFont() {
+  currentFont = (currentFont + 1) % fonts.length;
+  changeFont(fonts[currentFont]);
+}
+
+function prevFont() {
+  currentFont = (currentFont - 1 + fonts.length) % fonts.length;
+  changeFont(fonts[currentFont]);
+}
+
+function changeFont(fontClass) {
+  document.body.className = fontClass;
+  document.querySelector('select').value = fontClass;
+  if (lightMode) {
+    document.body.classList.add('light-mode');
+  }
+}
+
+function toggleMode() {
+  lightMode = !lightMode;
+  document.body.classList.toggle('light-mode');
+}
+
+function titleCase(str) {
+  return str.toLowerCase().split(' ').map(function(word) {
+    return (word.charAt(0).toUpperCase() + word.slice(1));
+  }).join(' ');
+}
+
+function showNotification(message) {
+  const notification = document.getElementById('notification');
+  notification.textContent = message;
+  notification.classList.add('show');
   
-    function nextFont() {
-      currentFont = (currentFont + 1) % fonts.length;
-      changeFont(fonts[currentFont]);
-    }
+  notification.style.fontFamily = getComputedStyle(document.body).fontFamily;
   
-    function prevFont() {
-      currentFont = (currentFont - 1 + fonts.length) % fonts.length;
-      changeFont(fonts[currentFont]);
-    }
-  
-    function changeFont(fontClass) {
-      document.body.className = fontClass;
-      document.querySelector('select').value = fontClass;
-      if (lightMode) {
-        document.body.classList.add('light-mode');
-      }
-    }
-  
-    function toggleMode() {
-      lightMode = !lightMode;
-      document.body.classList.toggle('light-mode');
-    }
-  
-    function titleCase(str) {
-      return str.toLowerCase().split(' ').map(function(word) {
-        return (word.charAt(0).toUpperCase() + word.slice(1));
-      }).join(' ');
-    }
-  
-    document.querySelector('.add-font-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      let fontName = document.getElementById('newFont').value.trim();
-      if (fontName) {
-        let fontClass = 'font-' + fontName.toLowerCase().replace(/\s+/g, '-');
-  
-        // Method to add font via Google Fonts
-        let link = document.createElement('link');
-        link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(fontName)}:ital,wght@0,400;0,700;1,400;1,700&display=swap`;
-        link.rel = 'stylesheet';
-        document.head.appendChild(link);
-  
-        let fontLoaded = false;
-  
-        link.addEventListener('load', function() {
-          document.head.insertAdjacentHTML('beforeend', `<style>.${fontClass} { font-family: '${fontName}', sans-serif; }</style>`);
-          fonts.push(fontClass);
-          let option = document.createElement('option');
-          option.value = fontClass;
-          option.textContent = fontName;
-          document.querySelector('select').appendChild(option);
-          changeFont(fontClass);
-          document.getElementById('newFont').value = '';
-          document.getElementById('error').textContent = '';
-          fontLoaded = true;
-        });
-  
-        link.addEventListener('error', function() {
-          document.head.removeChild(link);
-          checkAlternativeMethod();
-        });
-  
-        function checkAlternativeMethod() {
-          let newFont = document.createElement('style');
-          newFont.textContent = `.${fontClass} { font-family: "${fontName}"; }`;
-          document.head.appendChild(newFont);
-  
-          let testElement = document.createElement('span');
-          testElement.className = fontClass;
-          testElement.textContent = 'a';
-          testElement.style.position = 'absolute';
-          testElement.style.visibility = 'hidden';
-          document.body.appendChild(testElement);
-  
-          let before = testElement.offsetWidth;
-          testElement.style.fontFamily = 'serif';
-          let after = testElement.offsetWidth;
-          document.body.removeChild(testElement);
-  
-          if (before !== after) {
-            fonts.push(fontClass);
-            let option = document.createElement('option');
-            option.value = fontClass;
-            option.textContent = fontName;
-            document.querySelector('select').appendChild(option);
-            changeFont(fontClass);
-            document.getElementById('newFont').value = '';
-            document.getElementById('error').textContent = '';
-            document.getElementById('error').classList.add('hide');
-          } else {
-            document.head.removeChild(newFont);
-            document.getElementById('error').textContent = `Sorry, the font "${fontName}" is not available.`;
-            document.getElementById('error').classList.remove('hide');
-            setTimeout(() => {
-              document.getElementById('error').classList.add('hide');
-            }, 3000);
-          }
-        }
-      }
+  setTimeout(() => {
+    notification.classList.remove('show');
+  }, 3000);
+}
+
+document.querySelector('.add-font-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let fontName = document.getElementById('newFont').value.trim();
+  if (fontName) {
+    let fontClass = 'font-' + fontName.toLowerCase().replace(/\s+/g, '-');
+
+    let link = document.createElement('link');
+    link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(fontName)}:ital,wght@0,400;0,700;1,400;1,700&display=swap`;
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+
+    let fontLoaded = false;
+
+    link.addEventListener('load', function() {
+      document.head.insertAdjacentHTML('beforeend', `<style>.${fontClass} { font-family: '${fontName}', sans-serif; }</style>`);
+      fonts.push(fontClass);
+      let option = document.createElement('option');
+      option.value = fontClass;
+      option.textContent = fontName;
+      document.querySelector('select').appendChild(option);
+      changeFont(fontClass);
+      document.getElementById('newFont').value = '';
+      fontLoaded = true;
     });
-  
-    if (fonts.length > 0) {
-      changeFont(fonts[currentFont]);
+
+    link.addEventListener('error', function() {
+      document.head.removeChild(link);
+      checkAlternativeMethod();
+    });
+
+    function checkAlternativeMethod() {
+      let newFont = document.createElement('style');
+      newFont.textContent = `.${fontClass} { font-family: "${fontName}"; }`;
+      document.head.appendChild(newFont);
+
+      let testElement = document.createElement('span');
+      testElement.className = fontClass;
+      testElement.textContent = 'a';
+      testElement.style.position = 'absolute';
+      testElement.style.visibility = 'hidden';
+      document.body.appendChild(testElement);
+
+      let before = testElement.offsetWidth;
+      testElement.style.fontFamily = 'serif';
+      let after = testElement.offsetWidth;
+      document.body.removeChild(testElement);
+
+      if (before !== after) {
+        fonts.push(fontClass);
+        let option = document.createElement('option');
+        option.value = fontClass;
+        option.textContent = fontName;
+        document.querySelector('select').appendChild(option);
+        changeFont(fontClass);
+        document.getElementById('newFont').value = '';
+      } else {
+        document.head.removeChild(newFont);
+        showNotification(`Sorry, the font "${fontName}" is not available.`);
+      }
     }
-  </script>
-        </body></html>
+  }
+});
+
+if (fonts.length > 0) {
+  changeFont(fonts[currentFont]);
+}
+</script>
+</body>
+</html>
